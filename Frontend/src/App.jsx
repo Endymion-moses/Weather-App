@@ -11,7 +11,7 @@ const App = () => {
     <div>
        <Hero setCity = {setCity}/>
        <CurrentWeather city = {city}/>
-       <HourlyForecast/>
+       <HourlyForecast city = {city}/>
        <WeeklyData/>
     </div>
   )
