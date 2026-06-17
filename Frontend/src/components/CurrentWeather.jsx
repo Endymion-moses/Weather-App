@@ -1,15 +1,18 @@
-import React, { useEffect , useState} from 'react'
+import React, { useEffect , useState, useContext} from 'react'
 import cloud_icon from "../assets/cloud.png"
+import Hero from './Hero';
+import { CityContext } from "../context.jsx";
 
 
 
-const CurrentWeather = ({city}) => {
+const CurrentWeather = () => {
    const[weather, setWeather] = useState(null);
+   const { city } = useContext(CityContext);
    
   
   useEffect(() => {
-  if (!city) return;
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_APP_ID}&units=metric`)
+    if (!city) return;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_APP_ID}&units=metric`)
     .then(res => res.json())
     .then(data => {
       if (data.cod === "404") {
@@ -40,6 +43,7 @@ const CurrentWeather = ({city}) => {
 ]
   return (
     <div className='p-10'>
+      
         <div className='border border-blue-600 bg-blue-600 justify-center 
         items-center rounded-2xl'>
         <div className='flex justify-between'>
